@@ -3,6 +3,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { asset } from '@/lib/utils'
 
 defineProps<{
     memes: {
@@ -36,7 +37,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     class="flex flex-col overflow-hidden"
                 >
                     <img
-                        :src="`${meme.image}`"
+                        :src="asset(meme.image)"
                         :alt="meme.title"
                         class="object-cover aspect-square w-full"
                     />
