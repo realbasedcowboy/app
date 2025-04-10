@@ -12,7 +12,7 @@ import { createAppKit } from '@reown/appkit/vue';
 import { QueryClient, VueQueryPlugin } from '@tanstack/vue-query';
 import { WagmiPlugin } from '@wagmi/vue';
 
-import './echo';
+// import './echo';
 
 const queryClient = new QueryClient();
 
@@ -30,7 +30,7 @@ declare module 'vite/client' {
     }
 }
 
-const appName = import.meta.env.VITE_APP_NAME || 'Hopiumbet.com';
+const appName = import.meta.env.VITE_APP_NAME || 'Real Based Cowboy';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -59,8 +59,8 @@ createAppKit({
         analytics: true,
     },
     metadata: {
-        name: 'Flip the coin',
-        description: 'Anonymously multi-chain gambling',
+        name: 'Based Cowboy',
+        description: 'Real Based Cowboy',
         url: 'https://reown.com/appkit',
         icons: ['https://avatars.githubusercontent.com/u/179229932?s=200&v=4'],
     },

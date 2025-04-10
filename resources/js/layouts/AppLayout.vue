@@ -14,22 +14,6 @@ withDefaults(defineProps<Props>(), {
     breadcrumbs: () => [],
 });
 
-const accountInfo = useAppKitAccount();
-let channel: any; // Add variable to store the channel reference
-
-onMounted(() => {
-    channel = window.Echo.private(`user.${accountInfo.value.address}`).listen('.event', (e) => {
-        console.log(e);
-        toast(e.message);
-    });
-});
-
-onUnmounted(() => {
-    if (channel) {
-        channel.stopListening('.event'); // Remove the specific event listener
-        window.Echo.leave(`user.${accountInfo.value.address}`); // Leave the channel entirely
-    }
-});
 </script>
 
 <template>

@@ -11,10 +11,6 @@ const sidebarNavItems: NavItem[] = [
         href: '/settings/profile',
     },
     {
-        title: 'Deposits',
-        href: '/settings/deposits',
-    },
-    {
         title: 'Appearance',
         href: '/settings/appearance',
     },

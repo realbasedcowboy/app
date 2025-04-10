@@ -1,4 +1,4 @@
-# Hopium.dev
+# BasedCowboy
 
 ## Pre installation
 
@@ -30,7 +30,5 @@ staging environment.
 ## Shortcuts
 
 ```
-GIT_SSH_COMMAND='ssh -i ~/.ssh/hopium_key' git push
+GIT_SSH_COMMAND='ssh -i ~/.ssh/id_cowboy' git push
 ```
-
-git checkout -b SCRUM-11-request-a-token-with-a-form

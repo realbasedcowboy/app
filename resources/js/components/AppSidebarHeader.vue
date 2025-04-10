@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import BalanceSelector from '@/components/BalanceSelector.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
-import DepositButton from '@/components/DepositButton.vue';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import type { BreadcrumbItemType } from '@/types';
+import {Link} from '@inertiajs/vue3'
+import {Button} from '@/components/ui/button'
 
 defineProps<{
     breadcrumbs?: BreadcrumbItemType[];
@@ -24,8 +24,9 @@ defineProps<{
         <div class="flex-grow"></div>
 
         <div class="flex items-center gap-3">
-            <DepositButton />
-            <BalanceSelector />
+            <Button as-child>
+                <Link :href="route('meme.index')">Upload new meme</Link>
+            </Button>
         </div>
     </header>
 </template>

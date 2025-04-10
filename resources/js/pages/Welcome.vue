@@ -43,15 +43,15 @@ watch(
                         <div class="p-6 md:p-8">
                             <div class="flex flex-col gap-6">
                                 <div class="flex flex-col items-center text-center">
-                                    <h1 class="text-2xl font-bold">Welcome back</h1>
-                                    <p class="text-balance text-muted-foreground">Login to your HopiumBet account</p>
+                                    <h1 class="text-2xl font-bold">Welcome back, Cowboy</h1>
+                                    <p class="text-balance text-muted-foreground">Login to the Real Base Cowboy world</p>
                                     <appkit-button class="mt-4"></appkit-button>
                                 </div>
                             </div>
                         </div>
                         <div class="relative hidden bg-muted md:block">
                             <img
-                                src="https://www.shadcn-vue.com/placeholder.svg"
+                                src="/img/cowboy.jpeg"
                                 alt="Image"
                                 class="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
                             />
