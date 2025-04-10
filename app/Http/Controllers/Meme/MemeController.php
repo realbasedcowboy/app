@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Meme;
 
+use App\Domains\Meme\Models\Meme;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
 class MemeController extends Controller
 {
@@ -13,6 +16,10 @@ class MemeController extends Controller
         return Inertia::render('meme/Index');
     }
 
+    /**
+     * @throws FileIsTooBig
+     * @throws FileDoesNotExist
+     */
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
@@ -21,15 +28,15 @@ class MemeController extends Controller
             'image' => ['required', 'image', 'max:2048'],
         ]);
 
-        $path = $request->file('image')->store('memes', 'public');
-
         $user = $request->user();
 
-        $user->memes()->create([
+        /** @var Meme $meme */
+        $meme = $user->memes()->create([
             'title' => $request->title,
             'description' => $request->description,
-            'image' => $path,
         ]);
+
+        $meme->addMediaFromRequest('image')->toMediaCollection('images');
 
         return redirect()->intended(route('dashboard', absolute: false));
     }

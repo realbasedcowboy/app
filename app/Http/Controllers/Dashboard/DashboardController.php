@@ -15,7 +15,10 @@ class DashboardController extends Controller
         $user = $request->user();
 
         return Inertia::render('Dashboard', [
-            'memes' => $user->memes->all(),
+            'memes' => $user->memes()
+                ->with('media')
+                ->latest()
+                ->get(),
         ]);
     }
 }
