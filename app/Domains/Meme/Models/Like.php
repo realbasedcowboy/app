@@ -2,6 +2,7 @@
 
 namespace App\Domains\Meme\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -9,5 +10,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Like extends Model
 {
-    protected $fillable = [];
+    use HasUuids;
+
+    protected $fillable = [
+        'user_id',
+        'meme_id',
+        'is_liked',
+    ];
 }

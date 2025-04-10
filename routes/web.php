@@ -14,6 +14,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/meme', [MemeController::class, 'index'])->name('meme.index');
     Route::post('/meme/store', [MemeController::class, 'store'])->name('meme.store');
+
+    Route::post('/meme/{meme}/vote', [MemeController::class, 'vote'])->name('meme.vote');
 });
 
 require __DIR__.'/settings.php';

@@ -29,10 +29,6 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex flex-col gap-6 p-4 mx-auto">
             <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-fr">
-                <p v-if="!memes.length" class="col-span-full text-muted-foreground text-center">
-                    You haven't uploaded any memes yet.
-                </p>
-
                 <MemeCard v-for="meme in memes" :key="meme.id" :meme="meme" />
             </div>
         </div>

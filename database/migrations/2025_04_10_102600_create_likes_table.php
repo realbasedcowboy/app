@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('likes', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->foreignUuid('meme_id')->constrained();
             $table->foreignUuid('user_id')->constrained();
             $table->boolean('is_liked')->default(false);
