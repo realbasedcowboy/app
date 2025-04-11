@@ -61,20 +61,12 @@ createAppKit({
     metadata: {
         name: 'Based Cowboy',
         description: 'Real Based Cowboy',
-        url: 'https://reown.com/appkit',
+        url: 'https://cowboy-app.ddev.site',
         icons: ['https://avatars.githubusercontent.com/u/179229932?s=200&v=4'],
     },
     themeVariables: {
-        '--w3m-accent': '#000000',
+        '--w3m-accent': '#333333',
     },
-    tokens: {
-        '1399811149': {
-            // Solana mainnet chain ID
-            address: '6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN', // TRUMP mint address
-            image: 'https://gettrumpmemes.com/favicon.ico', // Optional: token icon from official site
-        },
-    },
+    debug: true
 });
-
-// This will set light / dark mode on page load...
 initializeTheme();

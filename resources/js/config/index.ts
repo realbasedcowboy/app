@@ -3,7 +3,8 @@ import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
 import { base, mainnet, polygon, solana, solanaDevnet, solanaTestnet, type AppKitNetwork } from '@reown/appkit/networks';
 import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
 
-export const projectId = '63835d9fa210d82292f17eef30a9529d';
+export const projectId = process.env.VITE_PROJECT_ID || '31c25b4c47ab9736aa2c3dbed2746400';
+
 if (!projectId) {
     throw new Error('VITE_PROJECT_ID is not set');
 }
