@@ -61,7 +61,7 @@ createAppKit({
     metadata: {
         name: 'Based Cowboy',
         description: 'Real Based Cowboy',
-        url: 'https://cowboy-app.ddev.site',
+        url: 'https://basedcowboy.com',
         icons: ['https://avatars.githubusercontent.com/u/179229932?s=200&v=4'],
     },
     themeVariables: {
