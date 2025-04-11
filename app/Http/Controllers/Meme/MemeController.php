@@ -62,7 +62,7 @@ class MemeController extends Controller
             'description' => $request->description,
         ]);
 
-        $meme->addMediaFromRequest('image')->toMediaCollection('images');
+        $meme->addMediaFromRequest('image')->toMediaCollection('images', 's3');
 
         return redirect()->intended(route('dashboard', absolute: false));
     }
