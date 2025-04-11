@@ -12,7 +12,7 @@ import { createAppKit } from '@reown/appkit/vue';
 import { QueryClient, VueQueryPlugin } from '@tanstack/vue-query';
 import { WagmiPlugin } from '@wagmi/vue';
 
-// import './echo';
+// import './echo'
 
 const queryClient = new QueryClient();
 

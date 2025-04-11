@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+import axios from 'axios'
 import { ThumbsDown, ThumbsUp } from 'lucide-vue-next';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -35,27 +36,20 @@ const localMeme = ref({
 });
 
 const handleVote = async (voteType: 'like' | 'dislike') => {
-    // Avoid multiple votes
     if (userVotes.value === voteType) return;
 
-    userVotes.value = voteType === 'like' ? VoteType.LIKE : VoteType.DISLIKE;
+    userVotes.value = voteType;
 
-    // Fetch the CSRF token from the page
-    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+    try {
+        const response = await axios.post(`/meme/${props.meme.id}/vote`, {
+            vote: voteType,
+        });
 
-    const response = await fetch(`/meme/${props.meme.id}/vote?vote=${voteType}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': csrfToken, // Include CSRF token
-        },
-    });
-
-    if (response.ok) {
-        // Update the local meme's likes/dislikes based on the response
-        const updatedMeme = await response.json();
+        const updatedMeme = response.data;
         localMeme.value.likes = updatedMeme.likes;
         localMeme.value.dislikes = updatedMeme.dislikes;
+    } catch (error) {
+        console.error('Vote failed:', error);
     }
 };
 
@@ -99,7 +93,7 @@ const formatTimeAgo = (date: string) => {
                     variant="ghost"
                     size="sm"
                     :class="['flex items-center gap-1', { 'text-green-600': userVotes?.value === 'like' }]"
-                    @click="handleVote('like')"
+                    @click="handleVote(VoteType.LIKE)"
                     :disabled="userVotes?.value === 'like'"
                 >
                 <ThumbsUp class="h-4 w-4" />
@@ -109,7 +103,7 @@ const formatTimeAgo = (date: string) => {
                     variant="ghost"
                     size="sm"
                     :class="['flex items-center gap-1', { 'text-red-600': userVotes?.value === 'dislike' }]"
-                    @click="handleVote('dislike')"
+                    @click="handleVote(VoteType.DISLIKE)"
                     :disabled="userVotes?.value === 'dislike'"
                 >
                 <ThumbsDown class="h-4 w-4" />
