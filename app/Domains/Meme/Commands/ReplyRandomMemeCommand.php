@@ -5,6 +5,7 @@ namespace App\Domains\Meme\Commands;
 use App\Domains\Meme\Models\Meme;
 use Telegram\Bot\Commands\Command;
 use Telegram\Bot\FileUpload\InputFile;
+use Telegram\Bot\Keyboard\Keyboard;
 
 class ReplyRandomMemeCommand extends Command
 {
@@ -13,11 +14,17 @@ class ReplyRandomMemeCommand extends Command
 
     public function handle(): void
     {
-        $randomImage = Meme::inRandomOrder()->first()->getFirstMediaUrl('images');
+        $randomMeme = Meme::inRandomOrder()->first();
+
+        $keyboard = Keyboard::make()->inline()->row([
+            Keyboard::inlineButton(['text' => '👍 Like', 'callback_data' => "like_{$randomMeme->id}"]),
+            Keyboard::inlineButton(['text' => '👎 Dislike', 'callback_data' => "dislike_{$randomMeme->id}"]),
+        ]);
 
         $this->replyWithPhoto([
-            'photo' => InputFile::create($randomImage),
-            'caption' => 'Roses are withered, violets decay, all in this group, you are cursed and forever gay.'
+            'photo' => InputFile::create($randomMeme->getFirstMediaUrl('images')),
+            'caption' => 'Roses are withered, violets decay, all in this group, you are cursed and forever gay.',
+            'reply_markup' => $keyboard,
         ]);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Domains\Meme\Commands\ReplyRandomMemeCommand;
+use App\Domains\Meme\Commands\UploadMemeCommand;
 use Telegram\Bot\Commands\HelpCommand;
 
 return [
@@ -131,7 +133,8 @@ return [
     */
     'commands' => [
         HelpCommand::class,
-        \App\Domains\Meme\Commands\ReplyRandomMemeCommand::class,
+        ReplyRandomMemeCommand::class,
+        UploadMemeCommand::class,
     ],
 
     /*
@@ -216,6 +219,7 @@ return [
         // 'start' => Acme\Project\Commands\StartCommand::class,
         // 'stop' => Acme\Project\Commands\StopCommand::class,
         // 'status' => Acme\Project\Commands\StatusCommand::class,
-        'random' => \App\Domains\Meme\Commands\ReplyRandomMemeCommand::class,
+        'upload' => UploadMemeCommand::class,
+        'random' => ReplyRandomMemeCommand::class,
     ],
 ];
