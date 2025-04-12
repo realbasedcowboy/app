@@ -16,15 +16,15 @@ class ReplyRandomMemeCommand extends Command
     {
         $randomMeme = Meme::inRandomOrder()->first();
 
-//        $keyboard = Keyboard::make()->inline()->row([
-//            Keyboard::inlineButton(['text' => '👍 Like', 'callback_data' => "like_{$randomMeme->id}"]),
-//            Keyboard::inlineButton(['text' => '👎 Dislike', 'callback_data' => "dislike_{$randomMeme->id}"]),
-//        ]);
+        $keyboard = Keyboard::make()->inline()->row([
+            Keyboard::inlineButton(['text' => '👍 Like', 'callback_data' => "like_{$randomMeme->id}"]),
+            Keyboard::inlineButton(['text' => '👎 Dislike', 'callback_data' => "dislike_{$randomMeme->id}"]),
+        ]);
 
         $this->replyWithPhoto([
             'photo' => InputFile::create($randomMeme->getFirstMediaUrl('images')),
             'caption' => $randomMeme->title.': '.$randomMeme->description,
-//            'reply_markup' => $keyboard,
+            'reply_markup' => $keyboard,
         ]);
     }
 }
