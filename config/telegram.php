@@ -131,6 +131,7 @@ return [
     */
     'commands' => [
         HelpCommand::class,
+        \App\Domains\Meme\Commands\ReplyRandomMemeCommand::class,
     ],
 
     /*
@@ -211,6 +212,7 @@ return [
     |
     */
     'shared_commands' => [
+        'help' => HelpCommand::class,
         // 'start' => Acme\Project\Commands\StartCommand::class,
         // 'stop' => Acme\Project\Commands\StopCommand::class,
         // 'status' => Acme\Project\Commands\StatusCommand::class,
