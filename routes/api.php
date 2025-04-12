@@ -3,6 +3,9 @@
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 Route::post('telegram/webhook', function() {
-    Telegram::commandsHandler(true);
+    $update = Telegram::commandsHandler(true);
+
+    \Illuminate\Support\Facades\Log::info($update);
+
     return 'ok';
 });
