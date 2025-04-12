@@ -9,7 +9,7 @@ use Telegram\Bot\FileUpload\InputFile;
 class ReplyRandomMemeCommand extends Command
 {
     protected string $name = 'random';
-    protected string $description = 'Returns a random meme from our pool';
+    protected string $description = 'Returns a random meme from our awesome meme pool';
 
     public function handle(): void
     {
