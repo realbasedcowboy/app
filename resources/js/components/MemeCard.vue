@@ -66,6 +66,8 @@ const formatTimeAgo = (date: string) => {
     <Card class="max-w-md overflow-hidden">
         <CardContent class="p-0">
             <div class="relative aspect-video w-full overflow-hidden">
+                <pre>
+                </pre>
                 <img
                     :src="localMeme.media[0]?.preview_url || '/placeholder.svg'"
                     :alt="localMeme.title"
