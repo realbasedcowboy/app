@@ -23,7 +23,7 @@ class ReplyRandomMemeCommand extends Command
 
         $this->replyWithPhoto([
             'photo' => InputFile::create($randomMeme->getFirstMediaUrl('images')),
-            'caption' => 'Roses are withered, violets decay, all in this group, you are cursed and forever gay.',
+            'caption' => $randomMeme->title.': '.$randomMeme->description,
 //            'reply_markup' => $keyboard,
         ]);
     }
