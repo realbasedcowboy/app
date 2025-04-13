@@ -65,9 +65,7 @@ const formatTimeAgo = (date: string) => {
 <template>
     <Card class="max-w-md overflow-hidden">
         <CardContent class="p-0">
-            <div class="relative aspect-video w-full overflow-hidden">
-                <pre>
-                </pre>
+            <div class="relative h-[350px] w-full overflow-hidden">
                 <img
                     :src="localMeme.media[0]?.preview_url || '/placeholder.svg'"
                     :alt="localMeme.title"
@@ -78,7 +76,7 @@ const formatTimeAgo = (date: string) => {
             <div class="p-4 pt-3">
                 <div class="flex items-start justify-between">
                     <div>
-                        <h2 class="text-xl font-bold">{{ localMeme.title }}</h2>
+                        <h2 class="text-xl font-bold h-16">{{ localMeme.title }}</h2>
                         <p class="text-xs text-muted-foreground">{{ formatTimeAgo(localMeme.created_at) }}</p>
                     </div>
                     <Badge variant="outline" class="ml-2">Meme</Badge>
@@ -89,12 +87,12 @@ const formatTimeAgo = (date: string) => {
             </div>
         </CardContent>
 
-        <CardFooter class="flex justify-between border-t p-2">
+        <CardFooter class="flex border-t p-2">
             <div class="flex">
                 <Button
                     variant="ghost"
                     size="sm"
-                    :class="['flex items-center gap-1', { 'text-green-600': userVotes?.value === 'like' }]"
+                    :class="['flex', { 'text-green-600': userVotes?.value === 'like' }]"
                     @click="handleVote(VoteType.LIKE)"
                     :disabled="userVotes?.value === 'like'"
                 >
@@ -104,7 +102,7 @@ const formatTimeAgo = (date: string) => {
                 <Button
                     variant="ghost"
                     size="sm"
-                    :class="['flex items-center gap-1', { 'text-red-600': userVotes?.value === 'dislike' }]"
+                    :class="['flex', { 'text-red-600': userVotes?.value === 'dislike' }]"
                     @click="handleVote(VoteType.DISLIKE)"
                     :disabled="userVotes?.value === 'dislike'"
                 >
