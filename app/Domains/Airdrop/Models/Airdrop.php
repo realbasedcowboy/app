@@ -16,8 +16,9 @@ class Airdrop extends Model
 
     protected $fillable = [
         'name',
-        'slug',
+        'keyword',
         'type',
+        'active',
     ];
 
     public function participants(): HasMany
@@ -28,5 +29,12 @@ class Airdrop extends Model
     public function winners(): HasMany
     {
         return $this->participants()->where('winner', 'true');
+    }
+
+    public function deactivate(): void
+    {
+        $this->update([
+            'active' => false,
+        ]);
     }
 }

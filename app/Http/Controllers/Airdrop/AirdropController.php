@@ -22,4 +22,22 @@ class AirdropController extends Controller
             'airdrop' => $airdrop,
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $airdrop = Airdrop::create($request->toArray());
+
+        return redirect()->intended(route('airdrops.edit', ['airdrop' => $airdrop->id]));
+    }
+
+    public function destroy(Airdrop $airdrop)
+    {
+        $airdrop->delete();
+
+        return redirect()->intended(route('airdrops.index'));
+    }
 }

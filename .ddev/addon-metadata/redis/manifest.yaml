@@ -1,7 +1,7 @@
 name: redis
 repository: ddev/ddev-redis
 version: v1.2.3
-install_date: "2025-03-04T14:38:49+01:00"
+install_date: "2025-04-15T23:21:11+02:00"
 project_files:
     - docker-compose.redis.yaml
     - redis/scripts/settings.ddev.redis.php

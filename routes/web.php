@@ -18,6 +18,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/airdrops', [AirdropController::class, 'index'])->name('airdrops.index');
     Route::get('/airdrops/edit/{airdrop?}', [AirdropController::class, 'edit'])->name('airdrops.edit');
+    Route::post('/airdrops/store/{airdrop?}', [AirdropController::class, 'store'])->name('airdrops.store');
+    Route::delete('/airdrops/{airdrop?}', [AirdropController::class, 'destroy'])->name('airdrops.destroy');
 
     Route::post('/meme/{meme}/vote', [MemeController::class, 'vote'])->name('meme.vote');
 });

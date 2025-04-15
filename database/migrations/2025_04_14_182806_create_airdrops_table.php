@@ -1,5 +1,6 @@
 <?php
 
+use App\Domains\Airdrop\Enums\AirdropTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,8 +14,17 @@ return new class extends Migration
     {
         Schema::create('airdrops', function (Blueprint $table) {
             $table->uuid('id')->primary();
+
             $table->string('name');
             $table->string('keyword');
+
+            $table->enum('type', [
+                AirdropTypeEnum::Wheel->value,
+                AirdropTypeEnum::Rain->value,
+            ]);
+
+            $table->boolean('active')->default(true);
+
             $table->timestamps();
             $table->softDeletes();
         });

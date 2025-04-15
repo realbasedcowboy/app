@@ -2,6 +2,8 @@
 
 namespace App\Domains\Meme\Commands;
 
+use App\Domains\Airdrop\Enums\AirdropTypeEnum;
+use App\Domains\Airdrop\Jobs\DeactivateAirdropJob;
 use App\Domains\Airdrop\Models\Airdrop;
 use Illuminate\Support\Str;
 use Telegram\Bot\Commands\Command;
@@ -10,27 +12,30 @@ class StartRainDropCommand extends Command
 {
     protected string $name = 'rain';
 
-    protected string $pattern = '{name} {keyword}';
+    protected string $pattern = '{name} {keyword} {password}';
 
     protected string $description = 'Starts a rain';
 
     public function handle(): void
     {
+        $password = 'abc123';
+
+        if ($password !== $this->argument('password'))
+            return;
+
         $keyword = $this->argument('keyword', Str::random(6));
 
-        $this->replyWithMessage([
-            'text' => "Type !{$keyword} to join this airdrop!"
+        $airdrop = Airdrop::create([
+            'name' => $this->argument('name'),
+            'keyword' => $keyword,
+            'type' => AirdropTypeEnum::Rain,
+            'active' => true,
         ]);
 
-        //        $rainName = $this->argument('name');
+        $this->replyWithMessage([
+            'text' => "Type !{$keyword} to join this airdrop, you only have a couple of seconds!"
+        ]);
 
-        //        if (! $activeRain) {
-        //            Cache::set("rain_{$rainName}", []);
-        //        }
-
-        // 1. start rain
-        // 2. store all messages of users between rain timestamp_start and timestamp_end in cache (this will be delivered via the webhook)
-        // 3. stop the rain
-        // 4. send shit to the winners
+        DeactivateAirdropJob::dispatch($airdrop)->delay(5);
     }
 }
