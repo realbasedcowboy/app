@@ -27,8 +27,6 @@ class User extends Authenticatable
         'email',
         'password',
         'address',
-        'affiliate_code',
-        'active_balance_id',
     ];
 
     /**

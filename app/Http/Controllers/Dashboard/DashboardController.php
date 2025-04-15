@@ -22,7 +22,7 @@ class DashboardController extends Controller
                 },
                 'likes as dislikes' => function ($query) {
                     $query->where('is_liked', 0);
-                }
+                },
             ])
                 ->with('media') // Ensure related media is eager-loaded
                 ->latest() // Ensure the memes are ordered by the latest ones

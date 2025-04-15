@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Airdrop\AirdropController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Meme\MemeController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/meme', [MemeController::class, 'index'])->name('meme.index');
     Route::post('/meme/store', [MemeController::class, 'store'])->name('meme.store');
+
+    Route::get('/airdrops', [AirdropController::class, 'index'])->name('airdrops.index');
+    Route::get('/airdrops/edit/{airdrop?}', [AirdropController::class, 'edit'])->name('airdrops.edit');
 
     Route::post('/meme/{meme}/vote', [MemeController::class, 'vote'])->name('meme.vote');
 });
